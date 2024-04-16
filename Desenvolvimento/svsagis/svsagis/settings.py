@@ -11,16 +11,20 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
+if os.name == 'nt':
+    VENV_BASE = os.environ['VIRTUAL_ENV']
+    os.environ['PATH'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo') + ';' + os.environ['PATH']
+    os.environ['PROJ_LIB'] = os.path.join(VENV_BASE, 'Lib\\site-packages\\osgeo\\data\\proj') + ';' + os.environ['PATH']
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-v9-*!@rkde_h4#y5xt*n=g&$by_n#%_x!-pb(soxx(!!k4pq%g"
+SECRET_KEY = "django-insecure-2(*_hewwmxi+h=**g5lwu$i%qqo^8jv2cl&pgmtg(h&tgt$uma"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,14 +35,18 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "svsagis.apps.ViolenciaConfig",
-    "svsagis.apps.AtendimentoConfig",
+    "svsaweb.apps.SvsawebConfig",
+    "violencia.apps.ViolenciaConfig",
+    "atendimento.apps.AtendimentoConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.gis",
+    "leaflet",
+    "djgeojson",
 ]
 
 MIDDLEWARE = [
@@ -77,8 +85,10 @@ WSGI_APPLICATION = "svsagis.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'svsagis',
+        'USER': 'svsa-admin',
+        'PASSWORD': 'svsa-admin',
     }
 }
 
