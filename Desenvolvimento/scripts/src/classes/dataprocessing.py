@@ -61,13 +61,42 @@ class DataContainer():
             data.append({'geometry': geometry, 'attributes': attributes})
         return data
 
-class Cleanser():
+class DataProcesser():
     def __init__():
         pass
-    
-    def NanValueAddresses():
-        """Tratamento dos registros de endereço sem valor, seja número ou rua.
-        """
 
-class Formatter():
-    pass
+    def ProcessNumbers(self, string):
+        """Trata os endereços nos quais o número está na mesma string. Remove o número dessa string e coloca na coluna 'numero' 
+        
+        Args: 
+            string: endereço
+
+        Returns:
+            string: endereço tratado
+            int: número correspondente ao endereço
+        """
+        index = 0
+        number = ""
+        for index, char in enumerate(string):
+            if char.isdigit():
+                break
+        if index < len(string):
+            number = int(string[index:])
+            string = string[:index].strip()
+
+        return string, number
+        
+    def NanValueAddresses(self, data):
+        """Tratamento dos registros de endereço sem valor, seja número ou rua.
+        Args:
+            data (dataframe): Dataframe com os dados
+        """
+        for row in data:
+            if not (pd.isna(row['endereco']) or row['endereco'] is None or
+                pd.isna(row['numero']) or row['numero'] is None or row['numero']==0):
+                data.dropna(subset = ['numero', 'endereco'], inplace = True)
+
+    def FormatAddressesNames(self, data):
+
+
+

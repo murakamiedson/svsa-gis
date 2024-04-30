@@ -36,8 +36,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "svsaweb.apps.SvsawebConfig",
-    "violencia.apps.ViolenciaConfig",
-    "atendimento.apps.AtendimentoConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -45,8 +43,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.gis",
-    "leaflet",
-    "djgeojson",
 ]
 
 MIDDLEWARE = [
@@ -89,6 +85,7 @@ DATABASES = {
         'NAME': 'svsagis',
         'USER': 'svsa-admin',
         'PASSWORD': 'svsa-admin',
+        'PORT': '5432',
     }
 }
 

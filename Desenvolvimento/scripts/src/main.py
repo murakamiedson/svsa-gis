@@ -15,8 +15,5 @@ import geopandas as gpd
 from .classes.dataprocessing import Formatter
 
 
-
-
-
 if __name__=='__main__':
     pass

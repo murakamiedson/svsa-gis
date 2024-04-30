@@ -1,0 +1,58 @@
+29/08/2023--------------------------------------------------------
+Leitura:
+- Manual Prontuario Suas (cap1, cap2 e p140);
+- Serviços da Proteção Social Especial (média-alta complexidade).
+06/09/2023--------------------------------------------------------
+- Importar o banco de dados com o nome 'svsaweb' no MySQL Workbench;
+- Objetivo é estabelecer uma visualização dos dados por quantidade de ocorrência numa determinada região;
+12/09/2023--------------------------------------------------------
+- Mudar as queries para perceber todos os tipos de violência contra todos grupos;
+- Outra atividade: criar a visualização dos tipos de atendimento por unidade/regiao (nas tabelas agendamento coletivo, agendamentofamiliar e listaatendimento).
+- Para fazer o mapemeanto, criar um dicionário relacionando a unidade e o bairro. O professor disponibilizou um html com as demarcações das unidades. Se for possível obter aquele mapa no formato OSM, pode-se transformar este arquivo num GeoJSON para fazer as manipulações necessárias.
+- Uma alternativa é utilizar os dados kmz de salto, que guarda as divisões por código de setor estabelecido pelo IBGE, e fazer o mapeamento em cima disso. Dessa forma, seria necessario estabeler a posição das unidades e demarcar todos os  setores dentro da área de atuação da unidade.
+19/09/2023--------------------------------------------------------
+- Não houve reunião
+26/09/2023--------------------------------------------------------
+- Mapa por área de controle de certa unidade CRAS -> mapa disponibilizado pelo professor;
+- Agrupar violências por tipo e verificar se o tipo "Outro" possui um número que torna viável separá-lo em tipos mais específicos.
+3/10/2023--------------------------------------------------------
+-
+10/10/2023--------------------------------------------------------
+- Não houve reunião
+17/10/2023--------------------------------------------------------
+- Subir o arquivo no branch Develop do repositório git;
+- Criar camadas para cada tipo de violência;
+- Query no banco de dados para pegar os endereços de cada pessoa que reportou a violência (montar mapa de calor).
+24/10/2023--------------------------------------------------------
+- Não houve reunião.
+31/10/2023--------------------------------------------------------
+- Discussão do que foi feito até então.
+- Ajustar a query: está limitada para 1000 resultados?
+- Geocoding API para colocar coordenada nos dados para o HeatMap.
+07/10/2023--------------------------------------------------------
+- Arrumar as pastas
+- Subir para o repositorio
+- Arrumar o geocode
+- Arrumar a query para obter o tempo 
+SELECT
+	endereco.endereco,
+    endereco.numero,
+    endereco.bairro,
+    pessoa.sexo,
+    situacaoviolencia.situacao,
+    unidade.codigo,
+    unidade.nome
+FROM svsaweb.pessoa
+INNER JOIN familia ON pessoa.codigo_familia = familia.codigo
+INNER JOIN endereco ON familia.codigo_endereco = endereco.codigo
+INNER JOIN prontuario ON familia.codigo = prontuario.codigo_familia
+INNER JOIN unidade ON prontuario.codigo_unidade = unidade.codigo
+LEFT JOIN situacaoviolencia ON pessoa.codigo = situacaoviolencia.codigo_pessoa;
+
+01/04/2024--------------------------------------------------------
+- Estudar:
+https://github.com/rg3915/geodjango
+https://www.youtube.com/watch?v=k2Y_jBmyGVY
+https://www.youtube.com/watch?v=ofTUgfZbEkU
+https://hackernoon.com/how-to-build-location-based-app-with-geodjango-bk1i356x
+https://www.django-rest-framework.org
