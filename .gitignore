@@ -1,16 +1,15 @@
-.svsagis/**/*.pdf
+*.pdf
 
-.svsagis/**/*.ppt
-.svsagis/**/*.pptx
+Gerenciamento de Projeto/*.pptx
+Gerenciamento de Projeto/*.pdf
 
-.svsagis/**/*.txt
+*.txt
+*.PNG
+*.png
 
-.svsagis/**/*.PNG
-.svsagis/*.png
-.svsagis/**/*.jpg
-.svsagis/**/*.jpeg
 
-.svsagis/**/credentials.json
+Desenvolvimento/data/credentials.json
 
-.svsagis/**/*.ipynb_checkpoints
+*.ipynb_checkpoints
+Desenvolvimento/*.ipynb_checkpoints
 
