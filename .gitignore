@@ -3,7 +3,10 @@
 .svsagis/**/*.ppt
 .svsagis/**/*.pptx
 
-.svsagis/**/*.png
+.svsagis/**/*.txt
+
+.svsagis/**/*.PNG
+.svsagis/*.png
 .svsagis/**/*.jpg
 .svsagis/**/*.jpeg
 
